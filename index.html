@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW M Evolution - Experience the Legacy of M Power</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <h1 class="loader-title">BMW M<span class="evolution">evolution</span></h1>
+            <p class="loader-subtitle">Turn up the volume to enjoy full experience</p>
+            <button id="startBtn" class="start-btn">START EXPERIENCE</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent" class="main-content hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>BMW M<span class="evolution">evolution</span></h1>
+            </div>
+            <div class="credits">
+                <span>© BMW M Heritage</span>
+            </div>
+        </header>
+
+        <!-- Timeline Navigation -->
+        <nav class="timeline-nav">
+            <ul class="timeline-list">
+                <li><a href="#intro" class="timeline-link active" data-section="0">Intro</a></li>
+                <li><a href="#2001" class="timeline-link" data-section="1">2001</a></li>
+                <li><a href="#2014" class="timeline-link" data-section="2">2014</a></li>
+                <li><a href="#2019" class="timeline-link" data-section="3">2019</a></li>
+                <li><a href="#2020" class="timeline-link" data-section="4">2020</a></li>
+                <li><a href="#2024" class="timeline-link" data-section="5">2024</a></li>
+            </ul>
+        </nav>
+
+        <!-- Layered Content Container -->
+        <div class="content-container">
+            <!-- Background Layers -->
+            <!-- Intro Layer -->
+            <div class="content-layer active" data-index="0">
+                <div class="background-image">
+                    <img src="images/topdown.jpg" alt="BMW M Top Down View" class="full-bg-image">
+                </div>
+            </div>
+
+            <!-- 2001 Layer -->
+            <div class="content-layer" data-index="1">
+                <div class="background-image">
+                    <img src="images/m3-2001.jpg" alt="BMW M3 2001" class="full-bg-image">
+                </div>
+            </div>
+
+            <!-- 2014 Layer -->
+            <div class="content-layer" data-index="2">
+                <div class="background-image">
+                    <img src="images/m3-2014.jpg" alt="BMW M3 2014" class="full-bg-image">
+                </div>
+            </div>
+
+            <!-- 2019 Layer -->
+            <div class="content-layer" data-index="3">
+                <div class="background-image">
+                    <img src="images/m4-2019.png" alt="BMW M4 2019" class="full-bg-image">
+                </div>
+            </div>
+
+            <!-- 2020 Layer -->
+            <div class="content-layer" data-index="4">
+                <div class="background-image">
+                    <img src="images/m4-2020.png" alt="BMW M4 2020" class="full-bg-image">
+                </div>
+            </div>
+
+            <!-- 2024 Layer -->
+            <div class="content-layer" data-index="5">
+                <div class="background-image">
+                    <img src="images/m4-2024.png" alt="BMW M4 2024" class="full-bg-image">
+                </div>
+            </div>
+
+            <!-- Text Layers -->
+            <!-- Intro Text -->
+            <div class="text-layer active" data-index="0">
+                <div class="text-overlay">
+                    <h2 class="section-title">BMW Motorsport</h2>
+                    <p class="section-text">
+                        The history of BMW M began in 1972 with the founding of BMW Motorsport GmbH.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 2001 Text -->
+            <div class="text-layer" data-index="1">
+                <div class="text-overlay">
+                    <h2 class="section-title">2001</h2>
+                    <p class="section-text">
+                        <strong>E46 M3:</strong> 333 hp • 8,000 rpm redline • The pinnacle of naturally aspirated M3s
+                    </p>
+                </div>
+            </div>
+
+            <!-- 2014 Text -->
+            <div class="text-layer" data-index="2">
+                <div class="text-overlay">
+                    <h2 class="section-title">2014</h2>
+                    <p class="section-text">
+                        <strong>F82 M4:</strong> 425 hp • Twin-turbo 3.0L • The M3 coupe becomes M4
+                    </p>
+                </div>
+            </div>
+
+            <!-- 2019 Text -->
+            <div class="text-layer" data-index="3">
+                <div class="text-overlay">
+                    <h2 class="section-title">2019</h2>
+                    <p class="section-text">
+                        <strong>F82 M4 CS:</strong> 453 hp • Club Sport edition • Limited production
+                    </p>
+                </div>
+            </div>
+
+            <!-- 2020 Text -->
+            <div class="text-layer" data-index="4">
+                <div class="text-overlay">
+                    <h2 class="section-title">2020</h2>
+                    <p class="section-text">
+                        <strong>G82 M4:</strong> 503 hp Competition • S58 twin-turbo • Bold new design
+                    </p>
+                </div>
+            </div>
+
+            <!-- 2024 Text -->
+            <div class="text-layer" data-index="5">
+                <div class="text-overlay">
+                    <h2 class="section-title">2024</h2>
+                    <p class="section-text">
+                        <strong>G82 M4 CSL:</strong> 543 hp • Ultimate M performance • Track-focused dynamics
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+
+        <!-- Audio -->
+        <audio id="backgroundMusic" loop>
+            <source src="audio/background-music.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Sound Toggle -->
+        <button id="soundToggle" class="sound-toggle">
+            <span class="sound-icon">🔊</span>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

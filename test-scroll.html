@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW M Evolution - Scroll Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #222;
+            color: white;
+        }
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: rgba(0,0,0,0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #666;
+        }
+        .controls button {
+            display: block;
+            width: 200px;
+            margin: 10px 0;
+            padding: 10px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .controls button:hover {
+            background: #0088ff;
+        }
+        .info {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe src="http://localhost:3001" id="bmwFrame"></iframe>
+    
+    <div class="controls">
+        <h3>Scroll Test Controls</h3>
+        <button onclick="simulateScroll(100)">Scroll Down (Small)</button>
+        <button onclick="simulateScroll(300)">Scroll Down (Medium)</button>
+        <button onclick="simulateScroll(500)">Scroll Down (Large)</button>
+        <button onclick="simulateScroll(-100)">Scroll Up (Small)</button>
+        <button onclick="simulateScroll(-300)">Scroll Up (Medium)</button>
+        <div class="info">
+            <p>Use these buttons to simulate mouse wheel scrolling.</p>
+            <p>The BMW M Evolution site is loaded in an iframe below.</p>
+            <p>Watch the console for scroll event logs.</p>
+        </div>
+    </div>
+
+    <script>
+        function simulateScroll(deltaY) {
+            const iframe = document.getElementById('bmwFrame');
+            const iframeWindow = iframe.contentWindow;
+            
+            // Create and dispatch a wheel event
+            const wheelEvent = new WheelEvent('wheel', {
+                deltaY: deltaY,
+                deltaMode: 0,
+                bubbles: true,
+                cancelable: true
+            });
+            
+            // Dispatch the event to the iframe's document
+            if (iframeWindow && iframeWindow.document) {
+                iframeWindow.document.dispatchEvent(wheelEvent);
+                console.log('Dispatched wheel event with deltaY:', deltaY);
+            }
+        }
+        
+        // Wait for iframe to load
+        document.getElementById('bmwFrame').onload = function() {
+            console.log('BMW M Evolution site loaded in iframe');
+        };
+    </script>
+</body>
+</html>

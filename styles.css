@@ -1,0 +1,412 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+}
+
+/* Loader Styles */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-title {
+    font-size: 4rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.evolution {
+    font-weight: 100;
+    color: #0066cc;
+}
+
+.loader-subtitle {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+}
+
+.start-btn {
+    background: transparent;
+    border: 2px solid #0066cc;
+    color: #ffffff;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.start-btn:hover {
+    background: #0066cc;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 102, 204, 0.3);
+}
+
+/* Main Content */
+.main-content {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    z-index: 1000;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 70%, transparent 100%);
+}
+
+.logo h1 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+}
+
+.credits {
+    font-size: 0.7rem;
+    color: #888;
+}
+
+/* Timeline Navigation */
+.timeline-nav {
+    position: fixed;
+    left: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.timeline-list {
+    list-style: none;
+}
+
+.timeline-list li {
+    margin: 1.5rem 0;
+}
+
+.timeline-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.timeline-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 1px;
+    background: #666;
+    transition: all 0.3s ease;
+}
+
+.timeline-link:hover,
+.timeline-link.active {
+    color: #ffffff;
+}
+
+.timeline-link.active::before {
+    width: 20px;
+    background: #0066cc;
+}
+
+/* Layered Content Container */
+.content-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Content Layers - Stacked positioning */
+.content-layer {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transform: translateY(0);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    will-change: clip-path;
+}
+
+/* Stack layers in reverse order - higher index = lower z-index */
+.content-layer[data-index="0"] { z-index: 60; }
+.content-layer[data-index="1"] { z-index: 50; }
+.content-layer[data-index="2"] { z-index: 40; }
+.content-layer[data-index="3"] { z-index: 30; }
+.content-layer[data-index="4"] { z-index: 20; }
+.content-layer[data-index="5"] { z-index: 10; }
+
+/* Active layer stays in place */
+.content-layer.active {
+    transform: translateY(0);
+}
+
+/* Previous layers wipe away from bottom to top */
+.content-layer.prev {
+    transform: translateY(0);
+    clip-path: polygon(0 0, 100% 0, 100% 0%, 0 0%);
+}
+
+/* Text Layers - Same positioning as content layers */
+.text-layer {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transform: translateY(0);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    will-change: clip-path;
+    pointer-events: none; /* Allow clicks to pass through to background */
+}
+
+/* Stack text layers with higher z-index than backgrounds */
+.text-layer[data-index="0"] { z-index: 160; }
+.text-layer[data-index="1"] { z-index: 150; }
+.text-layer[data-index="2"] { z-index: 140; }
+.text-layer[data-index="3"] { z-index: 130; }
+.text-layer[data-index="4"] { z-index: 120; }
+.text-layer[data-index="5"] { z-index: 110; }
+
+/* Active text layer */
+.text-layer.active {
+    transform: translateY(0);
+}
+
+/* Previous text layers */
+.text-layer.prev {
+    transform: translateY(0);
+    clip-path: polygon(0 0, 100% 0, 100% 0%, 0 0%);
+}
+
+/* Background Image - Full Screen */
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.full-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Text Overlay - Small at Top */
+.text-overlay {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1.5rem 3rem;
+    border-radius: 5px;
+    backdrop-filter: blur(10px);
+    opacity: 1; /* Changed from 0 to 1 since we'll control visibility with clip-path */
+    max-width: 90%;
+    pointer-events: auto; /* Allow interaction with text content */
+}
+
+/* Remove the fadeInText animation since we're using clip-path */
+
+.text-overlay .section-title {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.text-overlay .section-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #ccc;
+    font-weight: 300;
+}
+
+.text-overlay .section-text strong {
+    color: #ffffff;
+    font-weight: 400;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: fixed;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 100;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-indicator.hidden {
+    opacity: 0;
+}
+
+.scroll-indicator span {
+    font-size: 0.8rem;
+    color: #666;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.scroll-arrow {
+    width: 20px;
+    height: 20px;
+    margin: 10px auto 0;
+    border-right: 2px solid #666;
+    border-bottom: 2px solid #666;
+    transform: rotate(45deg);
+    animation: scrollBounce 2s infinite;
+}
+
+@keyframes scrollBounce {
+    0%, 100% {
+        transform: rotate(45deg) translateY(0);
+    }
+    50% {
+        transform: rotate(45deg) translateY(-5px);
+    }
+}
+
+/* Sound Toggle */
+.sound-toggle {
+    position: fixed;
+    bottom: 2rem;
+    left: 3rem;
+    background: transparent;
+    border: 1px solid #666;
+    color: #666;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.sound-toggle:hover {
+    border-color: #0066cc;
+    color: #0066cc;
+}
+
+.sound-toggle.muted .sound-icon {
+    text-decoration: line-through;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .text-overlay .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .text-overlay .section-text {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .timeline-nav {
+        display: none;
+    }
+    
+    .header {
+        padding: 1rem 2rem;
+    }
+    
+    .logo h1 {
+        font-size: 1rem;
+    }
+    
+    .text-overlay {
+        top: 80px;
+        padding: 1rem 2rem;
+    }
+    
+    .text-overlay .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .text-overlay .section-text {
+        font-size: 0.8rem;
+    }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
